@@ -1,12 +1,1 @@
-
-let boxBuscar = document.querySelector('.buscar-box');
-let lupa = document.querySelector('.lupa-buscar');
-let btnFechar = document.querySelector('.btn-fechar');
-
-lupa.addEventListener('click', ()=> {
-    boxBuscar.classList.add('ativar')
-})
-
-btnFechar.addEventListener('click', ()=> {
-    boxBuscar.classList.remove('ativar')
-})
+const input=document.querySelector('#search-input');const clear=document.querySelector('#clear');const box=document.querySelector('#suggestions');const items=[['DeskFlow','Next.js · TypeScript'],['Lista de tarefas','JavaScript · Playwright'],['Calculadora','HTML · CSS · JavaScript'],['Robotron 2000','DOM · JavaScript']];function render(){const q=input.value.trim().toLowerCase();clear.hidden=!q;if(!q){box.innerHTML='';return;}const matches=items.filter(([name,tags])=>(name+' '+tags).toLowerCase().includes(q));box.innerHTML=matches.length?matches.map(([name,tags])=>`<div class="item"><strong>${name}</strong><span>${tags}</span></div>`).join(''):'<div class="empty">Nenhum resultado encontrado.</div>';}input.addEventListener('input',render);clear.addEventListener('click',()=>{input.value='';render();input.focus()});document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==input){e.preventDefault();input.focus()}if(e.key==='Escape'&&document.activeElement===input){input.value='';render();input.blur()}});
